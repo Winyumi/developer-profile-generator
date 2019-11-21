@@ -1,0 +1,29 @@
+{
+  "name": "developer-profile-generator",
+  "version": "1.0.0",
+  "description": "Generates a PDF of your choice of GitHub profile.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Winyumi/developer-profile-generator.git"
+  },
+  "keywords": [
+    "profile",
+    "generator",
+    "pdf",
+    "github"
+  ],
+  "author": "Winson Quon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Winyumi/developer-profile-generator/issues"
+  },
+  "homepage": "https://github.com/Winyumi/developer-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^7.0.0",
+    "puppeteer": "^2.0.0"
+  }
+}
