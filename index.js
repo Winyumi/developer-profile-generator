@@ -52,7 +52,7 @@ async function init() {
             let html = `<p>${data.name} - ${data.avatar_url}</p>`;
             await page.setContent(html);
             await page.pdf({
-                path: `${dir}/profile-${timestamp()}.pdf`,
+                path: `${dir}/profile-${data.login.toLowerCase()}-${timestamp()}.pdf`,
                 format: 'Letter'
             });
             await browser.close();
