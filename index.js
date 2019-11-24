@@ -2,6 +2,7 @@ const axios = require("axios");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const puppeteer = require("puppeteer");
+const timestamp = require("./timestamp");
 
 function validateName(name) {
     return name !== '';
@@ -51,7 +52,7 @@ async function init() {
             let html = `<p>${data.name} - ${data.avatar_url}</p>`;
             await page.setContent(html);
             await page.pdf({
-                path: `${dir}/profile.pdf`,
+                path: `${dir}/profile-${timestamp()}.pdf`,
                 format: 'Letter'
             });
             await browser.close();
