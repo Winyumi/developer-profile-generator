@@ -1,30 +1,3 @@
-const colors = {
-  green: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
-};
-
 function generateHTML(data) {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -153,7 +126,7 @@ function generateHTML(data) {
            color: ${colors[data.color].headerColor};
            margin: 20px;
          }
-         
+
          .col {
          flex: 1;
          text-align: center;
@@ -165,10 +138,12 @@ function generateHTML(data) {
          font-weight: bold;
          }
 
-         @media print { 
-          body { 
-            zoom: .75; 
-          } 
+         @media print {
+          body {
+            zoom: .75;
+          }
          }
-      </style>`
-        }
+      </style>`;
+}
+
+module.exports = generateHTML;

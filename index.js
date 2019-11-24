@@ -2,7 +2,7 @@ const axios = require("axios");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const puppeteer = require("puppeteer");
-const timestamp = require("./timestamp");
+const timestamp = require("./modules/timestamp");
 
 function validateName(name) {
     return name !== '';
