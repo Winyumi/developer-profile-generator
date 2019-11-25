@@ -176,8 +176,8 @@ function generateHTML(data) {
                     </a>
                     ${data.blog ? `
                     <a class="nav-link" href="${data.blog}">
-                        <i class="fas fa-rss"></i>
-                        Blog
+                        <i class="fas fa-link"></i>
+                        Website
                     </a>
                     ` : ""}
                 </div>
