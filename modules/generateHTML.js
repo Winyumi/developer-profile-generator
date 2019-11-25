@@ -59,6 +59,7 @@ function generateHTML(data) {
         main {
             background-color: #E9EDEE;
             height: auto;
+            margin-top: 400px;
             padding-top: 30px;
         }
         h1, h2, h3, h4, h5, h6 {
@@ -74,6 +75,7 @@ function generateHTML(data) {
         .photo-header {
             position: relative;
             margin: 0 auto;
+            margin-top: -400px;
             margin-bottom: -50px;
             display: flex;
             justify-content: center;
@@ -194,7 +196,7 @@ function generateHTML(data) {
                     <div class="row">
                         <div class="col card">
                             <h3>GitHub Stars</h3>
-                            <h5>${data.public_gists}</h5>
+                            <h5>${data.starred_repos}</h5>
                         </div>
                         <div class="col card">
                             <h3>Following</h3>

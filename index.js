@@ -15,13 +15,13 @@ function validateName(name) {
 
 const questions = [
     {
-        message: "GitHub Username?",
+        message: "Enter a GitHub username:",
         type: "input",
         name: "username",
         validate: validateName
     },
     {
-        message: "Color?",
+        message: "Choose a color for the PDF:",
         type: "list",
         name: "color",
         choices: ["Red", "Green", "Blue", "Pink"]
@@ -31,12 +31,20 @@ const questions = [
 async function init() {
     try {
 
+        console.log("");
+
         // Prompt user for GitHub profile
         const { username } = await inquirer.prompt(questions[0]);
 
         // Get data from GitHub
         try {
-            var { data } = await axios.get(`https://api.github.com/users/${username}`);
+            console.log("Looking up GitHub profile...");
+            var profile = await axios.get(`https://api.github.com/users/${username}`);
+            var starred = await axios.get(`https://api.github.com/users/${username}/starred?per_page=100`);
+            var data = profile.data;
+            data.starred_repos = starred.data.length > 99 ? "99+" : starred.data.length;
+            console.log(`Profile "${data.login}" found.\n`);
+            // console.log(data);
         } catch (err) {
             console.log(`GitHub profile not found.`);
             return;
