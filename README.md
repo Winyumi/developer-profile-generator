@@ -17,6 +17,6 @@ Download or clone this repository into your local computer. **Node.js** is requi
 
 ![](images/cli-preview.gif)
 
-## Output
+## Example
 
 ![](images/pdf-preview.jpg)
