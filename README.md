@@ -6,7 +6,10 @@ Want a quick and easy way to create a document showcasing a person's GitHub prof
 
 ## Installation
 
-Download or clone this repository into your local computer. **Node.js** is required in order to run this script.
+**Node.js v13+** is required in order to run this script.
+
+1. Download or clone this repository into your local computer.
+2. In your terminal, browse to the folder and run `npm install`.
 
 ## Usage
 
