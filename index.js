@@ -1,8 +1,13 @@
+// Node modules
 const axios = require("axios");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const puppeteer = require("puppeteer");
+
+// Local modules
 const timestamp = require("./modules/timestamp");
+const generateHTML = require("./modules/generateHTML");
+
 
 function validateName(name) {
     return name !== '';
@@ -39,24 +44,28 @@ async function init() {
 
         // Prompt user for color
         const { color } = await inquirer.prompt(questions[1]);
-        console.log(`You've selected ${color}.`);
+        // console.log(`You've selected ${color}.`);
+        data.color = color.toLowerCase();
 
         // Create the PDF
         (async function createPDF() {
+            console.log("Creating PDF...");
             let dir = './pdf';
             if (!fs.existsSync(dir)) {
                 fs.mkdirSync(dir);
             }
+            let filename = `profile-${data.login.toLowerCase()}-${timestamp()}.pdf`;
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
-            let html = `<p>${data.name} - ${data.avatar_url}</p>`;
-            await page.setContent(html);
+            await page.setContent(generateHTML(data), {
+                waitUntil: "networkidle0"
+            });
             await page.pdf({
-                path: `${dir}/profile-${data.login.toLowerCase()}-${timestamp()}.pdf`,
+                path: `${dir}/${filename}`,
                 format: 'Letter'
             });
             await browser.close();
-            console.log("PDF has been created.");
+            console.log(`PDF has been created at "${dir}/${filename}".`);
         })();
 
     } catch (err) {
