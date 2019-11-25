@@ -159,28 +159,36 @@ function generateHTML(data) {
             <div class="photo-header">
                 <img src="${data.avatar_url}" alt="Profile Photo">
                 <h1>Hi!</h1>
-                <h2>My name is ${data.name}!</h2>
-                <h5>${data.company ? "Currently at " + data.company : ""}</h5>
+                <h2>My name is ${data.name ? data.name : data.login}!</h2>
+                ${data.company ? `
+                <h5>Currently at ${data.company}</h5>
+                ` : ""}
                 <div class="links-nav">
+                    ${data.location ? `
                     <a class="nav-link" href="https://www.google.com/maps/place/${data.location}">
                         <i class="fas fa-map-marker-alt"></i>
                         ${data.location}
                     </a>
+                    ` : ""}
                     <a class="nav-link" href="${data.html_url}">
                         <i class="fab fa-github"></i>
                         GitHub
                     </a>
+                    ${data.blog ? `
                     <a class="nav-link" href="${data.blog}">
                         <i class="fas fa-rss"></i>
                         Blog
                     </a>
+                    ` : ""}
                 </div>
             </div>
             <div class="container">
                 <div class="col">
                     <div class="row">
                         <div class="col" style="margin-top: 2em;">
+                            ${data.bio ? `
                             <h3>${data.bio}</h3>
+                            ` : ""}
                         </div>
                     </div>
                     <div class="row">
