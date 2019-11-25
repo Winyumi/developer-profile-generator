@@ -39,6 +39,7 @@ async function init() {
         // Get data from GitHub
         try {
             console.log("Looking up GitHub profile...");
+            // Get data from GitHub API
             var profile = await axios.get(`https://api.github.com/users/${username}`);
             var starred = await axios.get(`https://api.github.com/users/${username}/starred?per_page=100`);
             var data = profile.data;
@@ -58,20 +59,26 @@ async function init() {
         // Create the PDF
         (async function createPDF() {
             console.log("Creating PDF...");
+            // Create pdf directory if not exists
             let dir = './pdf';
             if (!fs.existsSync(dir)) {
                 fs.mkdirSync(dir);
             }
+            // Prepare filename with username and timestamp
             let filename = `profile-${data.login.toLowerCase()}-${timestamp()}.pdf`;
+            // Start puppeteer instance and page
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
+            // Set the page contents and wait for it to finish loading
             await page.setContent(generateHTML(data), {
                 waitUntil: "networkidle0"
             });
+            // Print page to PDF
             await page.pdf({
                 path: `${dir}/${filename}`,
                 format: 'Letter'
             });
+            // End puppeteer instance
             await browser.close();
             console.log(`PDF has been created at "${dir}/${filename}".`);
         })();
